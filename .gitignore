@@ -1,0 +1,9 @@
+*.user
+DB.qml
+garbage
+qmldir
+res/CiKL.db
+res/Table_Ciqual_2016.csv
+res/convert.sh
+res/first_line.csv
+res/first_line.ods

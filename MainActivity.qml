@@ -166,7 +166,7 @@ Item {
             name: "Groupes"
             number: "Chercher un aliment par groupe"
             activity: 5
-            imageSrc: "res/groupes2.jpg"
+            imageSrc: "res/groupes.jpg"
         }
         ListElement {
             name: "Composants"

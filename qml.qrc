@@ -6,7 +6,6 @@
         <file>GeneralDelegate.qml</file>
         <file>SearchTable.qml</file>
         <file>res/columns.csv</file>
-        <file>res/testutf.csv</file>
         <file>res/icons/back.png</file>
         <file>res/icons/clear.png</file>
         <file>res/icons/home.png</file>
@@ -22,8 +21,8 @@
         <file>GroupsModel.qml</file>
         <file>GroupsActivity.qml</file>
         <file>ComponentsSearch.qml</file>
-        <file>res/groupes.jpg</file>
-        <file>res/groupes2.jpg</file>
         <file>res/composants.png</file>
+        <file>res/Table_Ciqual_2016_converted.csv</file>
+        <file>res/groupes.jpg</file>
     </qresource>
 </RCC>

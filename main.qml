@@ -229,7 +229,7 @@ ApplicationWindow {
                         onClicked: {
                             console.debug("Synchronisation des données");
                             //csv = openFile("https://pro.anses.fr/tableciqual/Documents/Table_Ciqual_2016.csv");
-                            csv = openFile("res/testutf.csv");
+                            csv = openFile("res/Table_Ciqual_2016_converted.csv");
                             csv = csv.split(/\n/);
                             db.transaction(function(tx) {
                                 var columns = openFile("res/columns.csv").split(/\n/);
