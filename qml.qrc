@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>ProductTable.qml</file>
+        <file>GeneralDelegate.qml</file>
+        <file>SearchTable.qml</file>
+        <file>res/columns.csv</file>
+        <file>res/testutf.csv</file>
+        <file>res/icons/back.png</file>
+        <file>res/icons/clear.png</file>
+        <file>res/icons/home.png</file>
+        <file>res/icons/more_horiz.png</file>
+        <file>res/icons/more_vert.png</file>
+        <file>res/icons/search.png</file>
+        <file>GroupsSearch.qml</file>
+        <file>res/icons/sort.png</file>
+        <file>ParametersActivity.qml</file>
+        <file>MainActivity.qml</file>
+        <file>ComponentsModel.qml</file>
+        <file>ComponentsActivity.qml</file>
+        <file>GroupsModel.qml</file>
+        <file>GroupsActivity.qml</file>
+        <file>ComponentsSearch.qml</file>
+        <file>res/groupes.jpg</file>
+        <file>res/groupes2.jpg</file>
+        <file>res/composants.png</file>
+    </qresource>
+</RCC>
