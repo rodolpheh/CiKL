@@ -1,0 +1,322 @@
+[
+  {
+    "0": 0,
+    "origgpcd": "origgpfr",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "origfdcd",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "origfdnm",
+    "-": "-"
+  },
+  {
+    "0": 8400,
+    "origgpcd": "energie_ue_kj",
+    "-": "kj"
+  },
+  {
+    "0": 2000,
+    "origgpcd": "energie_ue_kcal",
+    "-": "kcal"
+  },
+  {
+    "0": 0,
+    "origgpcd": "energie_jones_kj",
+    "-": "kj"
+  },
+  {
+    "0": 0,
+    "origgpcd": "energie_jones_kcal",
+    "-": "kcal"
+  },
+  {
+    "0": 0,
+    "origgpcd": "eau",
+    "-": "ml"
+  },
+  {
+    "0": 50,
+    "origgpcd": "proteines",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "proteines_brutes",
+    "-": "g"
+  },
+  {
+    "0": 260,
+    "origgpcd": "glucides",
+    "-": "g"
+  },
+  {
+    "0": 70,
+    "origgpcd": "lipides",
+    "-": "g"
+  },
+  {
+    "0": 90,
+    "origgpcd": "sucres",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "amidon",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "fibres",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "polyols",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "cendres",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "alcool",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_organiques",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_satures",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_mono",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_poly",
+    "-": "g"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_butyrique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_caproique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_caprylique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_caprique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_laurique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_myristique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_palmitique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_stearique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_oleique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_linoleique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_alpha",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_arachidonique",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_epa",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "acides_gras_dha",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "cholesterol",
+    "-": "mg"
+  },
+  {
+    "0": 6000,
+    "origgpcd": "sel",
+    "-": "mg"
+  },
+  {
+    "0": 800,
+    "origgpcd": "calcium",
+    "-": "mg"
+  },
+  {
+    "0": 0,
+    "origgpcd": "chlorure",
+    "-": "-"
+  },
+  {
+    "0": 1,
+    "origgpcd": "cuivre",
+    "-": "mg"
+  },
+  {
+    "0": 14,
+    "origgpcd": "fer",
+    "-": "mg"
+  },
+  {
+    "0": 150,
+    "origgpcd": "iode",
+    "-": "µg"
+  },
+  {
+    "0": 375,
+    "origgpcd": "magnesium",
+    "-": "mg"
+  },
+  {
+    "0": 2,
+    "origgpcd": "manganese",
+    "-": "mg"
+  },
+  {
+    "0": 700,
+    "origgpcd": "phosphore",
+    "-": "mg"
+  },
+  {
+    "0": 2000,
+    "origgpcd": "potassium",
+    "-": "mg"
+  },
+  {
+    "0": 55,
+    "origgpcd": "selenium",
+    "-": "µg"
+  },
+  {
+    "0": 0,
+    "origgpcd": "sodium",
+    "-": "mg"
+  },
+  {
+    "0": 10,
+    "origgpcd": "zinc",
+    "-": "mg"
+  },
+  {
+    "0": 800,
+    "origgpcd": "retinol",
+    "-": "µg"
+  },
+  {
+    "0": 0,
+    "origgpcd": "betacarotene",
+    "-": "µg"
+  },
+  {
+    "0": 5,
+    "origgpcd": "vitamine_d",
+    "-": "µg"
+  },
+  {
+    "0": 12,
+    "origgpcd": "vitamine_e",
+    "-": "mg"
+  },
+  {
+    "0": 0,
+    "origgpcd": "vitamine_k1",
+    "-": "-"
+  },
+  {
+    "0": 0,
+    "origgpcd": "vitamine_k2",
+    "-": "-"
+  },
+  {
+    "0": 80,
+    "origgpcd": "vitamine_c",
+    "-": "mg"
+  },
+  {
+    "0": 1.1,
+    "origgpcd": "vitamine_b1",
+    "-": "mg"
+  },
+  {
+    "0": 1.4,
+    "origgpcd": "vitamine_b2",
+    "-": "mg"
+  },
+  {
+    "0": 16,
+    "origgpcd": "vitamine_b3",
+    "-": "mg"
+  },
+  {
+    "0": 6,
+    "origgpcd": "vitamine_b5",
+    "-": "mg"
+  },
+  {
+    "0": 1.4,
+    "origgpcd": "vitamine_b6",
+    "-": "mg"
+  },
+  {
+    "0": 200,
+    "origgpcd": "vitamine_b9",
+    "-": "µg"
+  },
+  {
+    "0": 2.5,
+    "origgpcd": "vitamine_b12",
+    "-": "µg"
+  }
+]

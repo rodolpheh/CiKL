@@ -288,14 +288,6 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-//        db.readTransaction(function(tx) {
-//            var results = tx.executeSql('SELECT * FROM AJR');
-//            ajr = {};
-//            for (var index = 0; index < results.rows.length; index++) {
-//                console.log(results.rows.item(index));
-//                ajr[results.rows.item(index)["composant"]] = {"ajr" : results.rows.item(index)["ajr"], "unite" : results.rows.item(index)["unite"]};
-//            }
-//        });
         ajr = JSON.parse(openFile("res/columns.json"));
         console.log(Screen.pixelDensity);
     }
