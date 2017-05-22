@@ -3,8 +3,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 
 Item {
-    property alias searchResults: searchResults
-    property bool sorting: false
+    property bool sorting: true
     property string column
     property string name
     property string search
@@ -44,19 +43,10 @@ Item {
     }
 
     function refresh() {
-        searchResults.clear();
-        db.readTransaction(function(tx) {
-            var request = "SELECT origgpcd, origgpfr, origfdcd, origfdnm " +
-                    "FROM CiKL WHERE origgpcd LIKE '" + column + "' " + (search != "" ? "AND origfdnm LIKE '%" + search + "%' " : "") +
-                    "ORDER BY origfdnm " + (sorting ? "ASC" : "DESC");
-
-            console.log(request);
-            var results = tx.executeSql(request);
-            for(var i = 0; i < results.rows.length; i++) {
-                console.log(JSON.stringify(results.rows.item(i)));
-                searchResults.append({ "number" : results.rows.item(i)["origfdcd"], "name" : results.rows.item(i)["origfdnm"], "value" : "0", "unite": "", "rdi": "", "group": results.rows.item(i)["origgpfr"] });
-            }
-        });
+        groupsFilterModel.setParameter(":group",  "'%" + column + "%'");
+        groupsFilterModel.setParameter(":searchString", "'%" + search + "%'");
+        groupsFilterModel.setParameter(":sorting", sorting ? "ASC" : "DESC");
+        groupsFilterModel.refresh();
     }
 
     Component {
@@ -73,7 +63,7 @@ Item {
                 anchors.fill: parent
 
                 Text {
-                    text: name
+                    text: origfdnm
                     Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
                     Layout.leftMargin: 16
                     opacity: 1
@@ -83,7 +73,7 @@ Item {
                 }
 
                 Text {
-                    text: group
+                    text: origgpfr
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                     Layout.leftMargin: 16
                     opacity: 0.535
@@ -95,37 +85,24 @@ Item {
                 anchors.fill: parent
 
                 onClicked: {
-                    console.log(number + " - " + name);
-                    db.readTransaction(function(tx) {
-                        var results = tx.executeSql("SELECT * FROM CiKL WHERE origfdcd = '" + number + "';");
-                        var productComponent = Qt.createComponent("ProductTable.qml");
-                        console.log(results.rows.length);
-                        console.log(JSON.stringify(results.rows.item(0)));
+                    var productComponent = Qt.createComponent("ProductTable.qml");
+                    console.log(productData.getData(origfdcd));
+                    var productTable = productComponent.createObject(null, JSON.parse(productData.getData(origfdcd)));
 
-                        var productTable = productComponent.createObject(null, results.rows.item(0));
-
-                        // Hide search field and search results before loading the new page
-                        searchField.focus = false;
-                        stack.push(productTable);
-                    });
+                    // Hide search field and search results before loading the new page
+                    searchField.focus = false;
+                    stack.push(productTable);
                 }
             }
         }
     }
 
-    ListModel {
-        id: searchResults
-    }
-
     ListView {
         id: resultsView
         anchors.fill: parent
-        model: searchResults
+        model: groupsFilterModel
         delegate: resultsDelegate
-        snapMode: ListView.SnapToItem
         clip: true
-        contentWidth: width
-        contentHeight: 40 * searchResults.count
 
         onMovementStarted: {
             searchField.focus = false;

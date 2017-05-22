@@ -2,9 +2,10 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.LocalStorage 2.0
+import QtQuick.Window 2.2
 
 ApplicationWindow {
-    property var db: LocalStorage.openDatabaseSync("CiKL", "1.0", "Table Ciqual", 2502656)
+//    property var db: LocalStorage.openDatabaseSync("CiKL", "1.0", "Table Ciqual", 2502656)
     property var colors: ["#d0bd7b", "#d1cb7c", "#ccd27e", "#c0d37f", "#b5d481", "#a9d582", "#9ed684", "#93d785", "#89d887", "#88d992"]
     property bool searchIntent: false
 
@@ -64,26 +65,16 @@ ApplicationWindow {
             }
             else {
                 if (searchField.text != "") {
-                    stack.stackItems[0].searchResults.clear();
-                    stack.stackItems[0].pageTitle = "Recherche : " + searchField.text
-                    db.readTransaction(function(tx) {
-                        var results = tx.executeSql("SELECT origgpfr, origfdcd, origfdnm FROM CiKL WHERE origfdnm LIKE '%" + searchField.text + "%' OR origgpfr LIKE '%" + searchField.text + "%' ORDER BY origfdnm ASC;");
-                        console.log(results.rows.length);
-                        for(var i = 0; i < results.rows.length; i++) {
-                            console.log(JSON.stringify(results.rows.item(i)));
-                            stack.stackItems[0].searchResults.append({ "number" : results.rows.item(i)["origfdcd"], "name" : results.rows.item(i)["origfdnm"], "value": "", "group": results.rows.item(i)["origgpfr"], "unite": "", "rdi": 0 });
-                        }
-                        console.debug(stack.stackItems[0].searchResults.count);
-                        if (stack.currentItem == stack.stackItems[0]) {
-                            console.log("yaaaay");
-                        }
-                        else if (stack.depth > 2) {
+                    globalSearchModel.setParameter(":searchString", "'%" + searchField.text + "%'");
+                    globalSearchModel.refresh();
+                    if (stack.currentItem != stack.stackItems[0]) {
+                        if (stack.depth > 2) {
                             stack.pop();
                         }
                         else {
                             stack.push(stack.stackItems[0]);
                         }
-                    });
+                    }
                 }
                 else {
                     stack.pop(null);
@@ -147,6 +138,7 @@ ApplicationWindow {
                 visible: (stack.currentItem == stack.stackItems[0] || focus) ? true : false
                 Layout.fillWidth: true
                 inputMethodHints: Qt.ImhNoPredictiveText
+                placeholderText: "Rechercher..."
 
                 onTextChanged: {
                     searchTimer.stop();
@@ -162,7 +154,7 @@ ApplicationWindow {
                     }
                     source: "res/icons/search.png"
                 }
-                visible: searchField.visible ? false : true
+                visible: searchField.visible && stack.currentItem.objectName != "groupsActivity" ? false : true
                 onClicked: {
                     searchField.focus = true;
                 }
@@ -191,7 +183,9 @@ ApplicationWindow {
                     }
                     source: "res/icons/sort.png"
                 }
-                visible: (stack.currentItem == stack.stackItems[1] || stack.currentItem == stack.stackItems[6]) ? true : false
+                visible: (stack.currentItem == stack.stackItems[1] ||
+                          stack.currentItem == stack.stackItems[6] ||
+                          stack.currentItem.objectName == "groupsActivity") ? true : false
                 onClicked: {
                     stack.currentItem.sorting = !stack.currentItem.sorting;
                     stack.currentItem.refresh();
@@ -220,54 +214,6 @@ ApplicationWindow {
                         onClicked: {
                             console.log("Paramètres");
                             stack.push(stack.stackItems[3]);
-                        }
-                    }
-
-                    MenuItem {
-                        text: "Synchroniser"
-
-                        onClicked: {
-                            console.debug("Synchronisation des données");
-                            //csv = openFile("https://pro.anses.fr/tableciqual/Documents/Table_Ciqual_2016.csv");
-                            csv = openFile("res/Table_Ciqual_2016_converted.csv");
-                            csv = csv.split(/\n/);
-                            db.transaction(function(tx) {
-                                var columns = openFile("res/columns.csv").split(/\n/);
-                                var columns_string = "";
-                                var insert_positional = "";
-
-                                // Create the AJR database if it doesn't already exist (otherwise, drop it and create a new one)
-                                tx.executeSql('DROP TABLE IF EXISTS AJR');
-                                tx.executeSql('CREATE TABLE IF NOT EXISTS AJR(composant TEXT, ajr FLOAT, unite TEXT)')
-
-                                for (var cIndex = 0; cIndex < columns.length - 1; cIndex++) {
-                                    var cLine = columns[cIndex].split(",");
-                                    console.log(cLine);
-                                    tx.executeSql('INSERT INTO AJR VALUES(?, ?, ?)', cLine);
-                                    columns_string += cLine[0] + " TEXT" + (cIndex == columns.length - 2 ? "" : ", ");
-                                    insert_positional += "?" + (cIndex == columns.length - 2 ? "" : ", ");
-                                }
-
-                                // Create the database if it doesn't already exist
-                                tx.executeSql('DROP TABLE IF EXISTS CiKL');
-                                tx.executeSql('CREATE TABLE IF NOT EXISTS CiKL(' + columns_string + ')');
-
-                                for (var index = 1; index < csv.length - 1; index++) {
-                                    var line = csv[index].split(";");
-                                    for (var lIndex = 0; lIndex < line.length; lIndex++) {
-                                        line[lIndex] = line[lIndex].trim();
-                                    }
-                                    // Add (another) food row
-                                    tx.executeSql('INSERT INTO CiKL VALUES(' + insert_positional + ')', line);
-                                }
-
-                                var results = tx.executeSql('SELECT * FROM AJR');
-                                ajr = {};
-                                for (var index = 0; index < results.rows.length; index++) {
-                                    ajr[results.rows.item(index)["composant"]] = {"ajr" : results.rows.item(index)["ajr"], "unite" : results.rows.item(index)["unite"]};
-                                }
-                                console.log(JSON.stringify(results));
-                            });
                         }
                     }
                 }
@@ -342,13 +288,15 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        db.readTransaction(function(tx) {
-            var results = tx.executeSql('SELECT * FROM AJR');
-            ajr = {};
-            for (var index = 0; index < results.rows.length; index++) {
-                ajr[results.rows.item(index)["composant"]] = {"ajr" : results.rows.item(index)["ajr"], "unite" : results.rows.item(index)["unite"]};
-            }
-        });
-        //console.log(JSON.stringify(ajr));
+//        db.readTransaction(function(tx) {
+//            var results = tx.executeSql('SELECT * FROM AJR');
+//            ajr = {};
+//            for (var index = 0; index < results.rows.length; index++) {
+//                console.log(results.rows.item(index));
+//                ajr[results.rows.item(index)["composant"]] = {"ajr" : results.rows.item(index)["ajr"], "unite" : results.rows.item(index)["unite"]};
+//            }
+//        });
+        ajr = JSON.parse(openFile("res/columns.json"));
+        console.log(Screen.pixelDensity);
     }
 }

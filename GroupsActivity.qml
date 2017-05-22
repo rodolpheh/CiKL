@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.0
 import QtGraphicalEffects 1.0
 
 Item {
+    objectName: "groupsActivity"
 
     Component {
         id: groupsHeading
@@ -27,17 +28,12 @@ Item {
                 }
 
                 Text {
-                    text: section
+                    text: origgpcdglob
                     font.bold: true
                     anchors.verticalCenter: parent.verticalCenter
                     color: "#607D8B"
                 }
             }
-
-//            Rectangle {
-//                color: "#E5E5E5"
-//                anchors.fill: parent
-//            }
         }
     }
 
@@ -59,16 +55,16 @@ Item {
                     left: parent.left
                 }
                 font.pixelSize: 13
-                text: name
+                text: origgpfr
             }
 
             MouseArea {
                 anchors.fill: parent
 
                 onClicked: {
-                    stack.stackItems[6].pageTitle = name;
-                    stack.stackItems[6].column = number;
-                    stack.stackItems[6].name = name;
+                    stack.stackItems[6].pageTitle = origgpfr;
+                    stack.stackItems[6].column = origgpcd;
+                    stack.stackItems[6].name = origgpfr;
                     stack.stackItems[6].refresh();
                     stack.push(stack.stackItems[6]);
                 }
@@ -78,10 +74,8 @@ Item {
 
     ListView {
         anchors.fill: parent
-        model: GroupsModel {}
+        model: groupsListModel
         delegate: groupsDelegate
-        contentWidth: width
-        contentHeight: 40 * model.count
 
         section.property: "categoryName"
         section.criteria: ViewSection.FullString

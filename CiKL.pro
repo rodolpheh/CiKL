@@ -1,8 +1,27 @@
-QT += qml quick
+# - setup the correct location to install to and load from
+android {
+    # android platform
+    # From: http://community.kde.org/Necessitas/Assets
+    SAMPLES_INSTALL_PATH=/assets/data
+} else {
+    # other platforms
+    SAMPLES_INSTALL_PATH=$$OUT_PWD/data
+}
+
+# - setup the 'make install' step
+samples.path = $$SAMPLES_INSTALL_PATH
+samples.files += data/CiKL.sqlite
+samples.depends += FORCE
+
+INSTALLS += samples
+
+QT += qml quick sql
 
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    lib/ciqualquerymodel.cpp \
+    lib/producttable.cpp
 
 RESOURCES += qml.qrc
 
@@ -30,6 +49,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     android-sources/AndroidManifest.xml \
-    README.md
+    README.md \
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources
+
+HEADERS += \
+    lib/ciqualquerymodel.h \
+    lib/producttable.h

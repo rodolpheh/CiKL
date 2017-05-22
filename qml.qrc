@@ -18,11 +18,11 @@
         <file>MainActivity.qml</file>
         <file>ComponentsModel.qml</file>
         <file>ComponentsActivity.qml</file>
-        <file>GroupsModel.qml</file>
         <file>GroupsActivity.qml</file>
         <file>ComponentsSearch.qml</file>
         <file>res/composants.png</file>
         <file>res/Table_Ciqual_2016_converted.csv</file>
         <file>res/groupes.jpg</file>
+        <file>res/columns.json</file>
     </qresource>
 </RCC>

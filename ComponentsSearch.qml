@@ -3,11 +3,12 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 
 Item {
-    property alias searchResults: searchResults
     property bool sorting: false
     property string column
     property string name
     property string search
+    property string unite
+    property real rdi
 
     function interpret(number, factor, unit) {
         if (number == 0) {
@@ -44,25 +45,10 @@ Item {
     }
 
     function refresh() {
-        searchResults.clear();
-        db.readTransaction(function(tx) {
-            var request = "SELECT origgpfr, origfdcd, origfdnm, " + column + ", " +
-                    "(CASE " +
-                    "WHEN SUBSTR(" + column + ", 1, 1) = \"<\" THEN SUBSTR(" + column + ", 3) " +
-                    "WHEN " + column + " LIKE 'traces' THEN '0' " +
-                    "WHEN " + column + " LIKE '-' THEN '-2' " +
-                    "WHEN " + column + " LIKE '0' THEN '-1' " +
-                    "ELSE " + column + " END) as newValue " +
-                    "FROM CiKL " + (search != "" ? "WHERE origfdnm LIKE '%" + search + "%' OR origgpfr LIKE '%" + search + "%' " : "") +
-                    "ORDER BY newValue + 0 " + (sorting ? "ASC" : "DESC");
-
-            console.log(request);
-            var results = tx.executeSql(request);
-            for(var i = 0; i < results.rows.length; i++) {
-                console.log(JSON.stringify(results.rows.item(i)));
-                searchResults.append({ "number" : results.rows.item(i)["origfdcd"], "name" : results.rows.item(i)["origfdnm"], "value" : results.rows.item(i)[column].toString(), "unite": ajr[column]["unite"], "rdi": ajr[column]["ajr"], "group": results.rows.item(i)["origgpfr"] });
-            }
-        });
+        componentSearchModel.setParameter(":column", column);
+        componentSearchModel.setParameter(":searchString", "'%" + search + "%'");
+        componentSearchModel.setParameter(":sorting", sorting ? "ASC" : "DESC");
+        componentSearchModel.refresh();
     }
 
     Component {
@@ -81,7 +67,6 @@ Item {
                     bottom: parent.bottom
                     left: parent.left
                 }
-                //color: colors[index >= 10 ? 8 - (index % 10) : index]
                 color: Qt.hsla(index >= 20 ? (1/20) * (18 - (index % 20)) : (1 / 20) * (index % 20), 0.4, 0.82)
                 width: sizeBg(value, 1, rdi) * parent.width
             }
@@ -90,7 +75,7 @@ Item {
                 anchors.fill: parent
 
                 Text {
-                    text: name
+                    text: origfdnm
                     Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
                     Layout.leftMargin: 16
                     opacity: 1
@@ -100,8 +85,6 @@ Item {
                     Layout.row: 0
                     Layout.column: 0
                 }
-
-                //Item { Layout.fillWidth: true }
 
                 Text {
                     text: qsTr(interpret(value, 1, unite))
@@ -114,7 +97,7 @@ Item {
                 }
 
                 Text {
-                    text: group
+                    text: origgpfr
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                     Layout.leftMargin: 16
                     opacity: 0.535
@@ -138,37 +121,23 @@ Item {
                 anchors.fill: parent
 
                 onClicked: {
-                    console.log(number + " - " + name);
-                    db.readTransaction(function(tx) {
-                        var results = tx.executeSql("SELECT * FROM CiKL WHERE origfdcd = '" + number + "';");
-                        var productComponent = Qt.createComponent("ProductTable.qml");
-                        console.log(results.rows.length);
-                        console.log(JSON.stringify(results.rows.item(0)));
+                    var productComponent = Qt.createComponent("ProductTable.qml");
+                    var productTable = productComponent.createObject(null, JSON.parse(productData.getData(origfdcd)));
 
-                        var productTable = productComponent.createObject(null, results.rows.item(0));
-
-                        // Hide search field and search results before loading the new page
-                        searchField.focus = false;
-                        stack.push(productTable);
-                    });
+                    // Hide search field and search results before loading the new page
+                    searchField.focus = false;
+                    stack.push(productTable);
                 }
             }
         }
     }
 
-    ListModel {
-        id: searchResults
-    }
-
     ListView {
         id: resultsView
         anchors.fill: parent
-        model: searchResults
+        model: componentSearchModel
         delegate: resultsDelegate
-        snapMode: ListView.SnapToItem
         clip: true
-        contentWidth: width
-        contentHeight: 40 * searchResults.count
 
         onMovementStarted: {
             searchField.focus = false;

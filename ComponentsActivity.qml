@@ -69,6 +69,8 @@ Item {
                     stack.stackItems[1].pageTitle = name;
                     stack.stackItems[1].column = column;
                     stack.stackItems[1].name = name;
+                    stack.stackItems[1].unite = ajr[column]["unite"];
+                    stack.stackItems[1].rdi = ajr[column]["ajr"];
                     stack.stackItems[1].refresh();
                     stack.push(stack.stackItems[1]);
                 }
