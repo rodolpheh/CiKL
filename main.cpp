@@ -17,7 +17,8 @@
 #include "lib/ciqualquerymodel.h"
 #include "lib/producttable.h"
 
-#define DB_MD5_SUM "a1c6a9f6a718c47c4c3f5d297dd89c44"
+//#define DB_MD5_SUM "a1c6a9f6a718c47c4c3f5d297dd89c44"
+#define DB_MD5_SUM "6850263c90fba3765fb5808a7b5fb2c3"
 
 void importDB(QFile *dbAssetUrl, QString folder) {
     QDir* dir = new QDir(folder + "/data");
