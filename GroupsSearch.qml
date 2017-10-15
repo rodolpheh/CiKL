@@ -8,6 +8,8 @@ Item {
     property string name
     property string search
 
+    objectName: "groupsSearch"
+
     function interpret(number, factor, unit) {
         if (number == 0) {
             return "";
@@ -85,13 +87,7 @@ Item {
                 anchors.fill: parent
 
                 onClicked: {
-                    var productComponent = Qt.createComponent("ProductTable.qml");
-                    console.log(productData.getData(origfdcd));
-                    var productTable = productComponent.createObject(null, JSON.parse(productData.getData(origfdcd)));
-
-                    // Hide search field and search results before loading the new page
-                    searchField.focus = false;
-                    stack.push(productTable);
+                    createProductPage(false, origfdcd, null);
                 }
             }
         }

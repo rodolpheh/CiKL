@@ -7,3 +7,7 @@ res/Table_Ciqual_2016.csv
 res/convert.sh
 res/first_line.csv
 res/first_line.ods
+AdvancedSearchActivity.qml
+data/CiKL.sqlite.bak
+db.qrc
+res/columns_old.json

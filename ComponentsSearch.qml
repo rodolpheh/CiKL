@@ -10,6 +10,8 @@ Item {
     property string unite
     property real rdi
 
+    objectName: "componentsSearch"
+
     function interpret(number, factor, unit) {
         if (number == 0) {
             return "";
@@ -121,12 +123,13 @@ Item {
                 anchors.fill: parent
 
                 onClicked: {
-                    var productComponent = Qt.createComponent("ProductTable.qml");
-                    var productTable = productComponent.createObject(null, JSON.parse(productData.getData(origfdcd)));
+                    createProductPage(false, origfdcd, null);
+//                    var productComponent = Qt.createComponent("ProductTable.qml");
+//                    var productTable = productComponent.createObject(null, JSON.parse(productData.getData(origfdcd)));
 
-                    // Hide search field and search results before loading the new page
-                    searchField.focus = false;
-                    stack.push(productTable);
+//                    // Hide search field and search results before loading the new page
+//                    searchField.focus = false;
+//                    stack.push(productTable);
                 }
             }
         }

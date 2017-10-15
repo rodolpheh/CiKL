@@ -174,6 +174,11 @@ Item {
             activity: 4
             imageSrc: "res/composants.png"
         }
+//        ListElement {
+//            name: "Recherche avancée"
+//            number: "Rechercher un aliment"
+//            activity: 7
+//        }
     }
 
     Rectangle {

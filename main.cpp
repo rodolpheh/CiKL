@@ -52,21 +52,27 @@ int main(int argc, char *argv[])
 #endif
 
     QFile efile(dbAssetUrl);
+
+    // Check the existence of the DB file in the package
     if (efile.exists()) {
         qDebug() << "INFO: Found database file in assets";
         qDebug() << "INFO: Database size : " << efile.size() << " bytes";
     }
     else {
         qDebug() << "ERROR: No database found in assets !";
+        return 0;
     }
 
     QFile dfile(folder + "/data/CiKL.sqlite");
+
+    // Check the existence of the DB file in the local files
     if (!dfile.exists()) {
         importDB(&efile, folder);
     }
     else {
         if (dfile.open(QFile::ReadOnly)) {
             QCryptographicHash hash(QCryptographicHash::Md5);
+            // If it exists, we compare the md5 sum with the DB in the package so we can find out if a new version has been distributed
             if (hash.addData(&dfile)) {
                 qDebug() << "INFO: Md5sum: " << hash.result().toHex();
                 if (hash.result().toHex() == DB_MD5_SUM) {
@@ -74,6 +80,7 @@ int main(int argc, char *argv[])
                 }
                 else {
                     qDebug() << "ERROR: Wrong md5 sum, will replace the database";
+                    // We replace the local DB with DB from the package
                     dfile.remove();
                     importDB(&efile, folder);
                 }
@@ -81,10 +88,12 @@ int main(int argc, char *argv[])
         }
     }
 
+    // Now we can open the local DB
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(folder + "/data/CiKL.sqlite");
     db.open();
 
+    // We create the model that will be used by the ListView objects
     CiqualQueryModel searchModel;
     CiqualQueryModel componentModel;
     CiqualQueryModel groupModel;
@@ -136,6 +145,7 @@ int main(int argc, char *argv[])
     groupFilterModel.refresh();
 
     QQmlApplicationEngine engine;
+    // We register the models that will be used by the ListView objects
     engine.rootContext()->setContextProperty("globalSearchModel", &searchModel);
     engine.rootContext()->setContextProperty("componentSearchModel", &componentModel);
     engine.rootContext()->setContextProperty("groupsListModel", &groupModel);

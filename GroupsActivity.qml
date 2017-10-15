@@ -6,6 +6,13 @@ import QtGraphicalEffects 1.0
 Item {
     objectName: "groupsActivity"
 
+    property bool sorting: true
+
+    function refresh() {
+        groupsListModel.setParameter(":sorting", sorting ? "ASC" : "DESC");
+        groupsListModel.refresh();
+    }
+
     Component {
         id: groupsHeading
 

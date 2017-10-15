@@ -1,322 +1,262 @@
-[
-  {
-    "0": 0,
-    "origgpcd": "origgpfr",
-    "-": "-"
+{
+  "origgpcd": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "origfdcd",
-    "-": "-"
+  "origgpfr": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "origfdnm",
-    "-": "-"
+  "origfdcd": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 8400,
-    "origgpcd": "energie_ue_kj",
-    "-": "kj"
+  "origfdnm": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 2000,
-    "origgpcd": "energie_ue_kcal",
-    "-": "kcal"
+  "energie_ue_kj": {
+    "ajr": 8400,
+    "unite": "kj"
   },
-  {
-    "0": 0,
-    "origgpcd": "energie_jones_kj",
-    "-": "kj"
+  "energie_ue_kcal": {
+    "ajr": 2000,
+    "unite": "kcal"
   },
-  {
-    "0": 0,
-    "origgpcd": "energie_jones_kcal",
-    "-": "kcal"
+  "energie_jones_kj": {
+    "ajr": 0,
+    "unite": "kj"
   },
-  {
-    "0": 0,
-    "origgpcd": "eau",
-    "-": "ml"
+  "energie_jones_kcal": {
+    "ajr": 0,
+    "unite": "kcal"
   },
-  {
-    "0": 50,
-    "origgpcd": "proteines",
-    "-": "g"
+  "eau": {
+    "ajr": 0,
+    "unite": "ml"
   },
-  {
-    "0": 0,
-    "origgpcd": "proteines_brutes",
-    "-": "g"
+  "proteines": {
+    "ajr": 50,
+    "unite": "g"
   },
-  {
-    "0": 260,
-    "origgpcd": "glucides",
-    "-": "g"
+  "proteines_brutes": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 70,
-    "origgpcd": "lipides",
-    "-": "g"
+  "glucides": {
+    "ajr": 260,
+    "unite": "g"
   },
-  {
-    "0": 90,
-    "origgpcd": "sucres",
-    "-": "g"
+  "lipides": {
+    "ajr": 70,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "amidon",
-    "-": "g"
+  "sucres": {
+    "ajr": 90,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "fibres",
-    "-": "g"
+  "amidon": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "polyols",
-    "-": "g"
+  "fibres": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "cendres",
-    "-": "g"
+  "polyols": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "alcool",
-    "-": "g"
+  "cendres": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_organiques",
-    "-": "g"
+  "alcool": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_satures",
-    "-": "g"
+  "acides_organiques": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_mono",
-    "-": "g"
+  "acides_gras_satures": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_poly",
-    "-": "g"
+  "acides_gras_mono": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_butyrique",
-    "-": "-"
+  "acides_gras_poly": {
+    "ajr": 0,
+    "unite": "g"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_caproique",
-    "-": "-"
+  "acides_gras_butyrique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_caprylique",
-    "-": "-"
+  "acides_gras_caproique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_caprique",
-    "-": "-"
+  "acides_gras_caprylique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_laurique",
-    "-": "-"
+  "acides_gras_caprique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_myristique",
-    "-": "-"
+  "acides_gras_laurique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_palmitique",
-    "-": "-"
+  "acides_gras_myristique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_stearique",
-    "-": "-"
+  "acides_gras_palmitique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_oleique",
-    "-": "-"
+  "acides_gras_stearique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_linoleique",
-    "-": "-"
+  "acides_gras_oleique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_alpha",
-    "-": "-"
+  "acides_gras_linoleique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_arachidonique",
-    "-": "-"
+  "acides_gras_alpha": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_epa",
-    "-": "-"
+  "acides_gras_arachidonique": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "acides_gras_dha",
-    "-": "-"
+  "acides_gras_epa": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 0,
-    "origgpcd": "cholesterol",
-    "-": "mg"
+  "acides_gras_dha": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 6000,
-    "origgpcd": "sel",
-    "-": "mg"
+  "cholesterol": {
+    "ajr": 0,
+    "unite": "mg"
   },
-  {
-    "0": 800,
-    "origgpcd": "calcium",
-    "-": "mg"
+  "sel": {
+    "ajr": 6000,
+    "unite": "mg"
   },
-  {
-    "0": 0,
-    "origgpcd": "chlorure",
-    "-": "-"
+  "calcium": {
+    "ajr": 800,
+    "unite": "mg"
   },
-  {
-    "0": 1,
-    "origgpcd": "cuivre",
-    "-": "mg"
+  "chlorure": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 14,
-    "origgpcd": "fer",
-    "-": "mg"
+  "cuivre": {
+    "ajr": 1,
+    "unite": "mg"
   },
-  {
-    "0": 150,
-    "origgpcd": "iode",
-    "-": "µg"
+  "fer": {
+    "ajr": 14,
+    "unite": "mg"
   },
-  {
-    "0": 375,
-    "origgpcd": "magnesium",
-    "-": "mg"
+  "iode": {
+    "ajr": 150,
+    "unite": "µg"
   },
-  {
-    "0": 2,
-    "origgpcd": "manganese",
-    "-": "mg"
+  "magnesium": {
+    "ajr": 375,
+    "unite": "mg"
   },
-  {
-    "0": 700,
-    "origgpcd": "phosphore",
-    "-": "mg"
+  "manganese": {
+    "ajr": 2,
+    "unite": "mg"
   },
-  {
-    "0": 2000,
-    "origgpcd": "potassium",
-    "-": "mg"
+  "phosphore": {
+    "ajr": 700,
+    "unite": "mg"
   },
-  {
-    "0": 55,
-    "origgpcd": "selenium",
-    "-": "µg"
+  "potassium": {
+    "ajr": 2000,
+    "unite": "mg"
   },
-  {
-    "0": 0,
-    "origgpcd": "sodium",
-    "-": "mg"
+  "selenium": {
+    "ajr": 55,
+    "unite": "µg"
   },
-  {
-    "0": 10,
-    "origgpcd": "zinc",
-    "-": "mg"
+  "sodium": {
+    "ajr": 0,
+    "unite": "mg"
   },
-  {
-    "0": 800,
-    "origgpcd": "retinol",
-    "-": "µg"
+  "zinc": {
+    "ajr": 10,
+    "unite": "mg"
   },
-  {
-    "0": 0,
-    "origgpcd": "betacarotene",
-    "-": "µg"
+  "retinol": {
+    "ajr": 800,
+    "unite": "µg"
   },
-  {
-    "0": 5,
-    "origgpcd": "vitamine_d",
-    "-": "µg"
+  "betacarotene": {
+    "ajr": 0,
+    "unite": "µg"
   },
-  {
-    "0": 12,
-    "origgpcd": "vitamine_e",
-    "-": "mg"
+  "vitamine_d": {
+    "ajr": 5,
+    "unite": "µg"
   },
-  {
-    "0": 0,
-    "origgpcd": "vitamine_k1",
-    "-": "-"
+  "vitamine_e": {
+    "ajr": 12,
+    "unite": "mg"
   },
-  {
-    "0": 0,
-    "origgpcd": "vitamine_k2",
-    "-": "-"
+  "vitamine_k1": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 80,
-    "origgpcd": "vitamine_c",
-    "-": "mg"
+  "vitamine_k2": {
+    "ajr": 0,
+    "unite": "-"
   },
-  {
-    "0": 1.1,
-    "origgpcd": "vitamine_b1",
-    "-": "mg"
+  "vitamine_c": {
+    "ajr": 80,
+    "unite": "mg"
   },
-  {
-    "0": 1.4,
-    "origgpcd": "vitamine_b2",
-    "-": "mg"
+  "vitamine_b1": {
+    "ajr": 1.1,
+    "unite": "mg"
   },
-  {
-    "0": 16,
-    "origgpcd": "vitamine_b3",
-    "-": "mg"
+  "vitamine_b2": {
+    "ajr": 1.4,
+    "unite": "mg"
   },
-  {
-    "0": 6,
-    "origgpcd": "vitamine_b5",
-    "-": "mg"
+  "vitamine_b3": {
+    "ajr": 16,
+    "unite": "mg"
   },
-  {
-    "0": 1.4,
-    "origgpcd": "vitamine_b6",
-    "-": "mg"
+  "vitamine_b5": {
+    "ajr": 6,
+    "unite": "mg"
   },
-  {
-    "0": 200,
-    "origgpcd": "vitamine_b9",
-    "-": "µg"
+  "vitamine_b6": {
+    "ajr": 1.4,
+    "unite": "mg"
   },
-  {
-    "0": 2.5,
-    "origgpcd": "vitamine_b12",
-    "-": "µg"
+  "vitamine_b9": {
+    "ajr": 200,
+    "unite": "µg"
+  },
+  "vitamine_b12": {
+    "ajr": 2.5,
+    "unite": "µg"
   }
-]
+}

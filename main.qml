@@ -30,6 +30,33 @@ ApplicationWindow {
         return request.responseText;
     }
 
+    function createProductPage(isComparing, origfdcd, origfdcdComponent1) {
+        var productComponent = Qt.createComponent("ProductTable.qml");
+        var jsonData = JSON.parse(productData.getData(origfdcd));
+        while (productComponent.status != Component.Ready) {}
+        var productTable = productComponent.createObject(null, {"origfdcd": jsonData.origfdcd});
+
+        if (isComparing) {
+            var productDataComponent1 = Qt.createComponent("ProductData.qml");
+            while (productDataComponent1.status != Component.Ready) {}
+            var productDataObject1 = productDataComponent1.createObject(productTable.component1, JSON.parse(productData.getData(origfdcdComponent1)));
+            var productDataComponent2 = Qt.createComponent("ProductData.qml");
+            while (productDataComponent2.status != Component.Ready) {}
+            var productDataObject2 = productDataComponent2.createObject(productTable.component2, JSON.parse(productData.getData(origfdcd)));
+            productTable.component2.visible = true;
+            productTable.component2.enabled = true;
+        }
+        else {
+            var productDataComponent = Qt.createComponent("ProductData.qml");
+            while (productDataComponent.status != Component.Ready) {}
+            var productDataObject = productDataComponent.createObject(productTable.component1, JSON.parse(productData.getData(origfdcd)));
+        }
+
+        // Hide search field and search results before loading the new page
+        searchField.focus = false;
+        stack.push(productTable);
+    }
+
     StackView {
         property var stackItems: [
             searchTableView.createObject(),
@@ -38,7 +65,9 @@ ApplicationWindow {
             parametersComponent.createObject(),
             componentsComponent.createObject(),
             groupsComponent.createObject(),
-            groupsSearchComponent.createObject()
+            groupsSearchComponent.createObject(),
+            //advancedSearchActivityComponent.createObject(),
+            //compareActivityComponent.createObject()
         ]
 
         id: stack
@@ -58,7 +87,7 @@ ApplicationWindow {
 
         onTriggered: {
 
-            if (stack.currentItem == stack.stackItems[1] || stack.currentItem == stack.stackItems[6]) {
+            if (stack.currentItem.objectName == "componentsSearch" || stack.currentItem.objectName == "groupsSearch") {
                 stack.currentItem.pageTitle = stack.currentItem.name + " - Recherche : " + searchField.text;
                 stack.currentItem.search = searchField.text;
                 stack.currentItem.refresh();
@@ -67,7 +96,7 @@ ApplicationWindow {
                 if (searchField.text != "") {
                     globalSearchModel.setParameter(":searchString", "'%" + searchField.text + "%'");
                     globalSearchModel.refresh();
-                    if (stack.currentItem != stack.stackItems[0]) {
+                    if (stack.currentItem.objectName != "searchTable") {
                         if (stack.depth > 2) {
                             stack.pop();
                         }
@@ -77,7 +106,9 @@ ApplicationWindow {
                     }
                 }
                 else {
-                    stack.pop(null);
+                    if (stack.currentItem.objectName == "searchTable" && !stack.currentItem.isComparing) {
+                        stack.pop(null);
+                    }
                 }
             }
         }
@@ -135,7 +166,7 @@ ApplicationWindow {
 
             TextField {
                 id: searchField
-                visible: (stack.currentItem == stack.stackItems[0] || focus) ? true : false
+                visible: (stack.currentItem.objectName == "searchTable" || focus) ? true : false
                 Layout.fillWidth: true
                 inputMethodHints: Qt.ImhNoPredictiveText
                 placeholderText: "Rechercher..."
@@ -166,6 +197,22 @@ ApplicationWindow {
                         fill: parent
                         margins: (parent.width - 24) / 2
                     }
+                    source: "res/icons/compare.png"
+                }
+                visible: stack.currentItem.objectName != "productView" ? false : true
+                onClicked: {
+                    var compareSearchComponent = Qt.createComponent("SearchTable.qml");
+                    var compareSearchObject = compareSearchComponent.createObject(null, { "isComparing": true, "origfdcdComponent1": stack.currentItem.origfdcd });
+                    stack.push(compareSearchObject);
+                }
+            }
+
+            ToolButton {
+                contentItem: Image {
+                    anchors {
+                        fill: parent
+                        margins: (parent.width - 24) / 2
+                    }
                     source: "res/icons/clear.png"
                 }
                 visible: searchField.visible ? true : false
@@ -183,8 +230,8 @@ ApplicationWindow {
                     }
                     source: "res/icons/sort.png"
                 }
-                visible: (stack.currentItem == stack.stackItems[1] ||
-                          stack.currentItem == stack.stackItems[6] ||
+                visible: (stack.currentItem.objectName == "componentsSearch" ||
+                          stack.currentItem.objectName == "groupsSearch" ||
                           stack.currentItem.objectName == "groupsActivity") ? true : false
                 onClicked: {
                     stack.currentItem.sorting = !stack.currentItem.sorting;
@@ -212,7 +259,6 @@ ApplicationWindow {
                         text: "Paramètres"
 
                         onClicked: {
-                            console.log("Paramètres");
                             stack.push(stack.stackItems[3]);
                         }
                     }
@@ -277,6 +323,22 @@ ApplicationWindow {
         }
     }
 
+//    Component {
+//        id: advancedSearchActivityComponent
+//        AdvancedSearchActivity {
+//            property string pageTitle: "Recherche avancée"
+//            id: advancedSearchActivity
+//        }
+//    }
+
+    Component {
+        id: compareActivityComponent
+        CompareActivity {
+            property string pageTitle: "Comparaison"
+            id: compareActivity
+        }
+    }
+
     onClosing: {
             if (stack.depth > 1) {
                 backButton.clicked();
@@ -289,6 +351,6 @@ ApplicationWindow {
 
     Component.onCompleted: {
         ajr = JSON.parse(openFile("res/columns.json"));
-        console.log(Screen.pixelDensity);
+        console.log("Pixel density: " + Screen.pixelDensity);
     }
 }

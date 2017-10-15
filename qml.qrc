@@ -24,5 +24,9 @@
         <file>res/Table_Ciqual_2016_converted.csv</file>
         <file>res/groupes.jpg</file>
         <file>res/columns.json</file>
+        <file>AdvancedSearchActivity.qml</file>
+        <file>res/icons/compare.png</file>
+        <file>CompareActivity.qml</file>
+        <file>ProductData.qml</file>
     </qresource>
 </RCC>
