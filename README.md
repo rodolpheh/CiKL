@@ -18,8 +18,6 @@ You can also sort and search products by group or by nutrient (but not both for 
 
 Pull the git repository and open it in QtCreator. If you already have configured QtCreator to build Android application for your phone, you should be able to build it straight away.
 
-On the first start, you should press "Synchroniser" in the alt-menu to build the database. A restart of the application might be necessary as well.
-
 ## Why doing this ? Isn't there other applications like this ?
 
 Yes, there is other applications like this. But they are not open source, and they don't always quote their sources.
